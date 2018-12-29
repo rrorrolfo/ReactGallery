@@ -24,3 +24,4 @@ yarn-error.log*
 
 #project files
 /project_files
+/src/config.js
