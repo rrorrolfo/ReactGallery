@@ -14,7 +14,8 @@ import Photocontainer from "./components/Photocontainer";
 class App extends Component {
 
   state = {
-    images: []
+    images: [],
+    loading: true
   }
 
   ////////// DATA request from Flicker API
@@ -32,7 +33,8 @@ class App extends Component {
   .then(response => {
     // handle response
     this.setState({
-      images: response.data.photos.photo
+      images: response.data.photos.photo,
+      loading: false
     });
   })
 
@@ -50,7 +52,9 @@ class App extends Component {
           <Header />
           <Search onSearch={this.performSearch}/>
           <Nav />
-          <Photocontainer images={this.state.images}/>
+          {
+            (this.state.loading) ? <h1 style={{marginTop: "25px"}}>Loading.....</h1> : <Photocontainer images={this.state.images}/>
+          }
         </div>
       </BrowserRouter>
     )

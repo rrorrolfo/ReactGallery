@@ -6,7 +6,7 @@ const PhotoItem = (props) => {
 
     return (
         <li>
-            <img src={`https://farm${props.images.farm}.staticflickr.com/${props.images.server}/${props.images.id}_${props.images.secret}.jpg`} alt={props.images.title} />
+            <img src={`https://farm${props.images.farm}.staticflickr.com/${props.images.server}/${props.images.id}_${props.images.secret}.jpg`} alt={props.images.title} title={props.images.title} />
         </li>
     );
 
