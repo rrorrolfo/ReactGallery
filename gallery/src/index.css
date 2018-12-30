@@ -74,6 +74,8 @@ input {
   outline: none;
 }
 
+/**************** NAVIGATION ********************/
+
 .main-nav li {
   width: 100%;
   margin-bottom: 1em;
@@ -92,6 +94,8 @@ input {
 .search-form button:hover {
   background-color: #275270;
 }
+
+/*********** PHOTO CONTAINERS *****************/
 
 .photo-container ul {
   display: flex;

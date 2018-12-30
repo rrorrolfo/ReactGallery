@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Route
 } from "react-router-dom";
+import axios from "axios";
 import apiKey from "./config";
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -12,6 +13,30 @@ import Photocontainer from "./components/Photocontainer";
 
 class App extends Component {
 
+  state = {
+    images: []
+  }
+
+  // DATA request from Flicker API
+  componentDidMount() {
+
+    // axios request from Fliker API*
+    axios.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ac3cf133f7f530a931a5910384ce3c25&tags=ducks&per_page=24&format=json&nojsoncallback=1')
+    
+  .then(response => {
+    // handle response
+    this.setState({
+      images: response.data.photos.photo
+    });
+  })
+
+  .catch(error => {
+    // handle error
+    console.log("there was an error getting the data", error);
+  });
+
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -19,7 +44,7 @@ class App extends Component {
           <Header />
           <Search />
           <Nav />
-          <Photocontainer />
+          <Photocontainer images={this.state.images}/>
         </div>
       </BrowserRouter>
     )
