@@ -17,7 +17,8 @@ class App extends Component {
 
   state = {
     images: [],
-    loading: true
+    loading: true,
+    navValues: ["ducks", "dogs", "birds"]
   }
 
   ////////// DATA request from Flicker API
@@ -51,7 +52,8 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <Header />
-          <Nav />
+          <Nav displayImg={this.performSearch} 
+          defaultValues={this.state.navValues}/>
            <Search onSearch={this.performSearch}/>
             {
               (this.state.loading) ? <h1 style={{marginTop: "25px"}}>Loading.....</h1> : <Photocontainer images={this.state.images} displayImg={this.performSearch}/>

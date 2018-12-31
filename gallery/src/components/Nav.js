@@ -1,17 +1,31 @@
-import React from "react";
+import React, {Component} from "react";
 import {NavLink} from "react-router-dom"; 
 
-const Nav = (props) => {
-    return (
-        <nav className="main-nav">
-            <ul>
-                <li><NavLink to="#">Ducks</NavLink></li>
-                <li><NavLink to="#">Dogs</NavLink></li>
-                <li><NavLink to="#">Birds</NavLink></li>
-                <li><NavLink to="/search">Search for other photos</NavLink></li>
-            </ul>
-        </nav>
-    );
+class Nav extends Component {
+
+    // Handles the click event of the navigation
+    handleClick = event => {
+
+        const value = event.target.textContent.toLowerCase();
+        this.props.displayImg(value);
+    }
+
+    render() {
+        return (
+            <nav className="main-nav">
+                <ul>
+                    <li><NavLink to="#" 
+                    onClick={this.handleClick}>Ducks</NavLink></li>
+                    <li><NavLink to="#"
+                    onClick={this.handleClick}>Dogs</NavLink></li>
+                    <li><NavLink to="#"
+                    onClick={this.handleClick}>Birds</NavLink></li>
+                    <li><NavLink to="/search">Search for other photos</NavLink></li>
+                </ul>
+            </nav>
+        );
+    }
+    
 }
 
 export default Nav;
