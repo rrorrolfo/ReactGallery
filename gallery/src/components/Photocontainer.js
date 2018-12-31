@@ -1,30 +1,37 @@
-import React from "react";
+import React, {Component} from "react";
 import PhotoItem from "./PhotoItem";
 import NoResults from "./NoResults";
 
 // This component mounts the container that will hold the fetched images
 
-const photoContainer = (props) => {
+class PhotoContainer extends Component {
 
-    const images = props.images;
-    let imagesList;
+    printImages() {
+        const images = this.props.images;
+        let imagesList = "";
 
-    // Iterates over the images array and returns a PhotoItem for each image
-    if (images.length === 0) {
-        imagesList = <NoResults />
-    } else {
-        imagesList = images.map(img => <PhotoItem images={img} key={img.id}/>);
+        // Iterates over the images array and returns a PhotoItem for each image
+        if (images.length === 0) {
+            imagesList = <NoResults />
+            return imagesList
+        } else {
+            imagesList = images.map(img => <PhotoItem images={img} key={img.id}/>);
+            return imagesList
+        }
     }
+    
 
-    return (
-        <div className="photo-container">
-            <h2>Results</h2>
-            <ul>
-                {/* Here go the requested images*/}
-                   {imagesList}
-            </ul>
-        </div>
-    );
+    render() {
+        return (
+            <div className="photo-container">
+                <h2>Results</h2>
+                <ul>
+                    {/* Here go the requested images*/}
+                       {this.printImages()}
+                </ul>
+            </div>
+        );
+    }
 }
 
-export default photoContainer;
+export default PhotoContainer;

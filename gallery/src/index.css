@@ -30,7 +30,7 @@ h1 {
 
 h2 {
   font-size: 2em;
-  margin: 52px 0 40px;
+  margin: 40px 0 40px;
   text-transform: capitalize;
 }
 
@@ -51,7 +51,7 @@ a {
 .search-form {
   max-width: 460px;
   display: flex;
-  margin: 0 auto 32px;
+  margin: 15px auto 32px ;
 }
 
 .search-form button {
@@ -85,7 +85,7 @@ input {
   display: block;
   background: #438bbd;
   border-radius: 3px;
-  padding: 5px;
+  padding: 10px 5px;
   color: #fff;
 }
 
@@ -142,11 +142,18 @@ input {
 
   .main-nav ul {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    width: 400px;
+    margin: 0 auto;
   }
   
   .main-nav li {
     margin: 10px;
     width: 100px;
+  }
+
+  .main-nav li:last-child {
+    flex-basis: 350px;
   }
 }
