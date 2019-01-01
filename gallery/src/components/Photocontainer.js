@@ -1,12 +1,19 @@
 import React, {Component} from "react";
 import PhotoItem from "./PhotoItem";
 import NoResults from "./NoResults";
+import App from "../App";
 
 // This component mounts the container that will hold the fetched images
 
 class PhotoContainer extends Component {
 
+    componentDidMount() {
+        this.props.onMounting(this.props.tag);
+    }
+
     printImages() {
+
+
         const images = this.props.images;
         let imagesList = "";
 
