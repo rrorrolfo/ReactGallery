@@ -23,9 +23,6 @@ class App extends Component {
 
   ////////// DATA request from Flicker API
 
-  componentDidMount () {
-    
-  }
   
   performSearch = (tags = "ducks") => {
 
@@ -54,7 +51,7 @@ class App extends Component {
           <Header />
           <Nav displayImg={this.performSearch} 
           defaultValues={this.state.navValues}/>
-           <Search onSearch={this.performSearch}/>
+           <Search onSearch={this.performSearch} history={this.props.history}/>
 
            <Route exact path="/" render={() => <Photocontainer images={this.state.images} onMounting={this.performSearch}/>}/>
           
