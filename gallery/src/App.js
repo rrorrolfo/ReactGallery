@@ -57,15 +57,23 @@ class App extends Component {
           defaultValues={this.state.navValues}/>
            <Search onSearch={this.performSearch} history={this.props.history}/>
 
+           {/*Redirects to Search Route when search functionality is used*/}
            {(this.state.isSearch) ? <Redirect to={`/search/${this.state.searchValue}`} /> : null}
 
-           <Route exact path="/" render={() => <Photocontainer images={this.state.images} onMounting={this.performSearch} isLoading={this.state.loading}/>}/>
-          
-           <Route exact path={"/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag} isLoading={this.state.loading}/>}/>
+           <Switch>
 
-           <Route path={"/search/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag} isLoading={this.state.loading}/>}/> 
+            {/* ROOT ROUTE*/}
+            <Route exact path="/" render={() => <Photocontainer images={this.state.images} onMounting={this.performSearch} isLoading={this.state.loading}/>}/>
+            
+            {/* Nav list items route*/}
+            <Route exact path={"/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag} isLoading={this.state.loading}/>}/>
 
+            {/* Route when search functionality is used*/}
+            <Route path={"/search/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag} isLoading={this.state.loading}/>}/> 
 
+            {/*Not found page route*/}
+            <Route component={NotFound} />
+           </Switch>
         </div>
       </BrowserRouter>
     )

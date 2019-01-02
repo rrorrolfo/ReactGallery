@@ -7,6 +7,7 @@ class Search extends Component {
     // Handles the form when submit button is pressed
     handleSubmit = event => {
         event.preventDefault();
+        //makes the request to Flickr API
         this.props.onSearch(this.query.value, true);
         event.currentTarget.reset();
     }
@@ -19,7 +20,6 @@ class Search extends Component {
                 name="search" 
                 placeholder="Search" 
                 ref={(input) => this.query = input} 
-                 
                 required/>
 
                 <button type="submit" className="search-button" >
