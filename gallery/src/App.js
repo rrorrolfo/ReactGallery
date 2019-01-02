@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter,
   Route,
+  Redirect,
   Switch
 } from "react-router-dom";
 import axios from "axios";
@@ -18,13 +19,14 @@ class App extends Component {
   state = {
     images: [],
     loading: true,
-    navValues: ["ducks", "dogs", "birds"]
+    isSearch: false,
+    searchValue: ""
   }
 
   ////////// DATA request from Flicker API
 
   
-  performSearch = (tags = "ducks") => {
+  performSearch = (tags = "ducks", search = false) => {
 
     // axios request from Fliker API*
     axios.get(` https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
@@ -33,7 +35,9 @@ class App extends Component {
     // handle response
     this.setState({
       images: response.data.photos.photo,
-      loading: false
+      loading: false,
+      isSearch: search,
+      searchValue: tags
     });
   })
 
@@ -53,11 +57,13 @@ class App extends Component {
           defaultValues={this.state.navValues}/>
            <Search onSearch={this.performSearch} history={this.props.history}/>
 
-           <Route exact path="/" render={() => <Photocontainer images={this.state.images} onMounting={this.performSearch}/>}/>
-          
-           <Route exact path={"/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag}/>}/>
+           {(this.state.isSearch) ? <Redirect to={`/search/${this.state.searchValue}`} /> : null}
 
-           <Route path={"/search/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag}/>}/> 
+           <Route exact path="/" render={() => <Photocontainer images={this.state.images} onMounting={this.performSearch} isLoading={this.state.loading}/>}/>
+          
+           <Route exact path={"/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag} isLoading={this.state.loading}/>}/>
+
+           <Route path={"/search/:tag"} render={({match}) => <Photocontainer images={this.state.images} onMounting={this.performSearch} tag={match.params.tag} isLoading={this.state.loading}/>}/> 
 
 
         </div>

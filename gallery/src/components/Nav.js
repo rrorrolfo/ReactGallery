@@ -19,7 +19,6 @@ class Nav extends Component {
                     onClick={this.handleClick}>Dogs</NavLink></li>
                     <li><NavLink to="/birds"
                     onClick={this.handleClick}>Birds</NavLink></li>
-                    <li><NavLink to="#">Search for other photos</NavLink></li>
                 </ul>
             </nav>
         );

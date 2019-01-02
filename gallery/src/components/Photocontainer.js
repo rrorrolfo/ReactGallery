@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import PhotoItem from "./PhotoItem";
 import NoResults from "./NoResults";
-import App from "../App";
 
 // This component mounts the container that will hold the fetched images
 
@@ -34,7 +33,12 @@ class PhotoContainer extends Component {
                 <h2>Results</h2>
                 <ul>
                     {/* Here go the requested images*/}
-                       {this.printImages()}
+                    {
+              (this.props.isLoading) 
+              ? <h1 style={{margin: "25px auto" }}>Loading.....</h1> 
+              : this.printImages()
+            }
+                       
                 </ul>
             </div>
         );
