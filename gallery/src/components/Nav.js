@@ -14,10 +14,10 @@ class Nav extends Component {
         return (
             <nav className="main-nav">
                 <ul>
-                    <li><NavLink to="/ducks" onClick={this.handleClick}>Ducks</NavLink></li>
-                    <li><NavLink to="/dogs"
+                    <li><NavLink to="/nav/ducks" onClick={this.handleClick}>Ducks</NavLink></li>
+                    <li><NavLink to="/nav/dogs"
                     onClick={this.handleClick}>Dogs</NavLink></li>
-                    <li><NavLink to="/birds"
+                    <li><NavLink to="/nav/birds"
                     onClick={this.handleClick}>Birds</NavLink></li>
                 </ul>
             </nav>
