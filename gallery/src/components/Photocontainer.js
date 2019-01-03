@@ -25,7 +25,6 @@ class PhotoContainer extends Component {
             return imagesList
         }
     }
-    
 
     render() {
         return (
@@ -37,6 +36,7 @@ class PhotoContainer extends Component {
               (this.props.isLoading) 
               ? <h1 style={{margin: "25px auto" }}>Loading.....</h1> 
               : this.printImages()
+              
             }
                        
                 </ul>

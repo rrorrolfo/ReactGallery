@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { withRouter } from "react-router-dom";
 
 // This component renders the search form and obtains the value to be searched.
 
@@ -8,8 +9,12 @@ class Search extends Component {
     handleSubmit = event => {
         event.preventDefault();
         //makes the request to Flickr API
-        this.props.onSearch(this.query.value, true);
+        this.props.onSearch(this.query.value);
+        //sends user to search route
+        this.props.history.push(`/search/${this.query.value}`);
+        //resets input value
         event.currentTarget.reset();
+        
     }
 
     render() {
@@ -34,4 +39,4 @@ class Search extends Component {
     }
 }
 
-export default Search;
+export default withRouter(Search);

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   BrowserRouter,
   Route,
-  Redirect,
   Switch
 } from "react-router-dom";
 import axios from "axios";
@@ -19,32 +18,30 @@ class App extends Component {
   state = {
     images: [],
     loading: true,
-    isSearch: false,
     searchValue: ""
   }
 
   ////////// DATA request from Flicker API
 
   
-  performSearch = (tags = "ducks", search = false) => {
+  performSearch = (tags = "ducks") => {
 
     // axios request from Fliker API*
     axios.get(` https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
     
-  .then(response => {
-    // handle response
-    this.setState({
-      images: response.data.photos.photo,
-      loading: false,
-      isSearch: search,
-      searchValue: tags
-    });
-  })
+    .then(response => {
+      // handle response
+      this.setState({
+        images: response.data.photos.photo,
+        loading: false,
+        searchValue: tags
+      });
+    })
 
-  .catch(error => {
-    // handle error
-    console.log("there was an error getting the data", error);
-  });
+    .catch(error => {
+      // handle error
+      console.log("there was an error getting the data", error);
+    });
 
   }
 
@@ -58,7 +55,7 @@ class App extends Component {
            <Search onSearch={this.performSearch} history={this.props.history}/>
 
            {/*Redirects to Search Route when search functionality is used*/}
-           {(this.state.isSearch) ? <Redirect to={`/search/${this.state.searchValue}`} /> : null}
+          
 
            <Switch>
 

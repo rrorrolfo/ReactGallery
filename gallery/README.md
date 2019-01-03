@@ -1,3 +1,28 @@
+<h1 align="center">React.js Interactive Gallery</h1>
+<p align="center">Using React.js library, I created an interactive gallery as a  Single Page App (SPA). this gallery obtains the images by communicating with Flikr API. The gallery presents a navigation bar with three default options to see images, also, a search bar is present so that the user can search for images of any topic he or she wants. </p>
+
+<h2 align="center">How to use the app</h2>
+
+-run `npm install` to install all the necessary dependencies<br>
+-run `npm start` o start the server at port 3000<br>
+-You will need an API key from Flicker in orther to make the requests, save your key in the src folder with the name config.js 
+
+<h2 align="center">How it works</h2>
+
+Images are requested from fliker API
+
+React props in components are used to communicate between components; this allows to display the specific images. Each request has a different route according to the images been displayed.
+
+`Create react app` used to:
+
+-Create the basic configuration and structure of the APP.
+
+`React router Dom` is used to:
+
+-Create necesarry routes for displaying content<br>
+-Handle 404 errors.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
